@@ -42,8 +42,10 @@ const createProduct = asyncHandler(async (req, res) => {
     const { name, price, category, stock } = req.body;
     const newProduct = new Product({ name, price, category, stock });
     await newProduct.save();
+
     cacheData = null;
     cacheTime = null;
+
     res.status(201).json(newProduct);
 });
 
@@ -66,8 +68,10 @@ const updateProduct = asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error('Product not found');
     }
+
     cacheData = null;
     cacheTime = null;
+
     res.json(updatedProduct);
 });
 
@@ -77,8 +81,10 @@ const deleteProduct = asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error('Product not found');
     }
+
     cacheData = null;
     cacheTime = null;
+
     res.json({ message: "Product deleted successfully" });
 });
 
